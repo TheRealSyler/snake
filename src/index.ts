@@ -6,44 +6,78 @@ awd3.height = window.innerHeight
 
 const ctx = awd3.getContext("2d")!
 
-let posX = 0
-let posY = 0
+const SIZE = 20
+const SPEED = 40
 
-let isMoving = false
+let posX = (window.innerWidth / 2) - (SIZE / 2)
+let posY = (window.innerHeight / 2) - (SIZE / 2)
 
-window.addEventListener("keydown", (awd4) => {
-  if (awd4.key.toLowerCase() === "d") {
-    isMoving = true
+
+let isMovingLeft = false
+let isMovingRight = false
+let isMovingUp = false
+let isMovingDown = false
+
+window.addEventListener("keydown", (event) => {
+  if (event.key.toLowerCase() === "a") {
+    isMovingLeft = true
+  }
+  if (event.key.toLowerCase() === "d") {
+    isMovingRight = true
+  }
+  if (event.key.toLowerCase() === "w") {
+    isMovingUp = true
+  }
+  if (event.key.toLowerCase() === "s") {
+    isMovingDown = true
+  }
+
+})
+
+window.addEventListener("keyup", (event) => {
+  if (event.key.toLowerCase() === "a") {
+    isMovingLeft = false
+  }
+  if (event.key.toLowerCase() === "d") {
+    isMovingRight = false
+  }
+  if (event.key.toLowerCase() === "w") {
+    isMovingUp = false
+  }
+  if (event.key.toLowerCase() === "s") {
+    isMovingDown = false
   }
 })
 
-window.addEventListener("keyup", (awd4) => {
-  if (awd4.key.toLowerCase() === "d") {
-    isMoving = false
-  }
-})
-
-function loooop() {
+function loop() {
 
   ctx.clearRect(0, 0, window.innerWidth, window.innerHeight)
 
+  ctx.beginPath()
   ctx.rect(0, 0, window.innerWidth, window.innerHeight);
   ctx.fillStyle = 'black';
   ctx.fill()
 
-
-  ctx.beginPath();
-  ctx.rect(posX, posY, 20, 20);
-
-  ctx.fillStyle = 'red'
+  ctx.beginPath()
+  ctx.rect(posX, posY, SIZE, SIZE);
+  ctx.fillStyle = 'blue'
   ctx.fill()
 
-  if (isMoving) {
-    posX = posX + 1.1
+  if (isMovingLeft) {
+    posX = Math.max(posX - SPEED, 0)
+  }
+  if (isMovingRight) {
+    posX = Math.min(posX + SPEED, window.innerWidth - SIZE)
+  }
+  if (isMovingUp) {
+    posY = Math.max(posY - SPEED, 0)
+  }
+  if (isMovingDown) {
+    posY = Math.min(posY + SPEED, window.innerHeight - SIZE)
   }
 
 
-  requestAnimationFrame(loooop)
+  requestAnimationFrame(loop)
 }
 
-requestAnimationFrame(loooop)
+requestAnimationFrame(loop)
