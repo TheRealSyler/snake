@@ -1,3 +1,4 @@
+import { draw } from './examples'
 const awd3 = document.createElement("canvas")
 document.body.append(awd3)
 
@@ -80,4 +81,6 @@ function loop() {
   requestAnimationFrame(loop)
 }
 
-requestAnimationFrame(loop)
+// requestAnimationFrame(loop)
+
+draw()
