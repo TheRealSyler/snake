@@ -44,3 +44,9 @@ export function draw() {
   }
 }
 
+
+const a = 'awd'
+
+type CustomStringType = 'awd' | 'test'
+
+const b: CustomStringType = 'awd'
