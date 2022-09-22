@@ -7,12 +7,13 @@ canvas.height = window.innerHeight
 const ctx = canvas.getContext("2d")!
 
 const SIZE = 20
+
 const rectangles = [
   {
     x: 100, y: 640, color: "red"
   },
   {
-    x: 200, y: 80, color: "green"
+    x: 500, y: 80, color: "green"
   },
   {
     x: 800, y: 740, color: "yellow"
@@ -45,8 +46,8 @@ export function draw() {
 }
 
 
-const a = 'awd'
+const a = '364564324'
 
 type CustomStringType = 'awd' | 'test'
 
-const b: CustomStringType = 'awd'
+const b: CustomStringType = 'test'
